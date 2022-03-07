@@ -79,7 +79,7 @@ const createUrqlClient: NextUrqlClientConfig = (ssrExchange, ctx) => {
 	if (isServer()) cookie = ctx?.req?.headers?.cookie;
 
 	return {
-		url: process.env.GRAPHQL_URL,
+		url: process.env.NEXT_PUBLIC_GRAPHQL_URL,
 		fetchOptions: {
 			credentials: 'include' as const,
 			headers: cookie ? { cookie } : undefined,

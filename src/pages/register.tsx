@@ -20,8 +20,7 @@ const Register: FC<RegisterProps> = ({}) => {
 				initialValues={{ email: '', username: '', password: '' }}
 				onSubmit={async (values, { setErrors }) => {
 					const res = await register({ options: values });
-					if (res.data?.register.errors)
-						setErrors(toErrorMap(res.data.register.errors));
+					if (res.data?.register.errors) setErrors(toErrorMap(res.data.register.errors));
 					else if (res.data?.register.user) {
 						router.push('/');
 					}
@@ -36,11 +35,7 @@ const Register: FC<RegisterProps> = ({}) => {
 							autoFocus
 						/>
 						<Box mt={4}>
-							<InputField
-								name='email'
-								placeholder='email'
-								label='Email'
-							/>
+							<InputField name='email' placeholder='email' label='Email' />
 						</Box>
 						<Box my={4}>
 							<InputField
@@ -50,11 +45,10 @@ const Register: FC<RegisterProps> = ({}) => {
 								type='password'
 							/>
 						</Box>
-						<Button
-							type='submit'
-							colorScheme='teal'
-							isLoading={isSubmitting}
-						>
+						<Button mr={4} onClick={router.back}>
+							Cancel
+						</Button>
+						<Button type='submit' colorScheme='teal' isLoading={isSubmitting}>
 							Register
 						</Button>
 					</Form>

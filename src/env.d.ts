@@ -1,7 +1,7 @@
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
-      GRAPHQL_URL: string;
+      NEXT_PUBLIC_GRAPHQL_URL: string;
     }
   }
 }
