@@ -1,5 +1,6 @@
 import { Cache, cacheExchange, Resolver } from '@urql/exchange-graphcache';
 import gql from 'graphql-tag';
+import { NextUrqlClientConfig } from 'next-urql';
 import Router from 'next/router';
 import { dedupExchange, Exchange, fetchExchange, stringifyVariables } from 'urql';
 import { pipe, tap } from 'wonka';
@@ -73,8 +74,8 @@ const invalidateAllPosts = (cache: Cache) => {
 	});
 };
 
-const createUrqlClient = (ssrExchange: any, ctx: any) => {
-	let cookie = '';
+const createUrqlClient: NextUrqlClientConfig = (ssrExchange, ctx) => {
+	let cookie: string | undefined = '';
 	if (isServer()) cookie = ctx?.req?.headers?.cookie;
 
 	return {
