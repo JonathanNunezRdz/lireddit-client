@@ -3,7 +3,7 @@
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
-		"start": "next start",
+		"start": "next start -p $PORT",
 		"gen": "graphql-codegen --config codegen.yml",
 		"gen-env": "gen-env-types .env.local -o src/env.d.ts -e ."
 	},
