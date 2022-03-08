@@ -4,7 +4,7 @@ import { withUrqlClient } from 'next-urql';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
 import InputField from '../components/InputField';
-import Wrapper from '../components/Wrapper';
+import Layout from '../components/Layout';
 import { useRegisterMutation } from '../generated/graphql';
 import createUrqlClient from '../utils/createUrlClient';
 import toErrorMap from '../utils/toErrorMap';
@@ -15,7 +15,7 @@ const Register: FC<RegisterProps> = ({}) => {
 	const router = useRouter();
 	const [, register] = useRegisterMutation();
 	return (
-		<Wrapper variant='sm'>
+		<Layout variant='sm'>
 			<Formik
 				initialValues={{ email: '', username: '', password: '' }}
 				onSubmit={async (values, { setErrors }) => {
@@ -54,7 +54,7 @@ const Register: FC<RegisterProps> = ({}) => {
 					</Form>
 				)}
 			</Formik>
-		</Wrapper>
+		</Layout>
 	);
 };
 
