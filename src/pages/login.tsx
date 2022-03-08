@@ -5,7 +5,7 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
 import InputField from '../components/InputField';
-import Wrapper from '../components/Wrapper';
+import Layout from '../components/Layout';
 import { useLoginMutation } from '../generated/graphql';
 import createUrqlClient from '../utils/createUrlClient';
 import toErrorMap from '../utils/toErrorMap';
@@ -16,16 +16,14 @@ const Login: FC<registerProps> = ({}) => {
 	const router = useRouter();
 	const [, login] = useLoginMutation();
 	return (
-		<Wrapper variant='sm'>
+		<Layout variant='sm'>
 			<Formik
 				initialValues={{ usernameOrEmail: '', password: '' }}
 				onSubmit={async (values, { setErrors }) => {
 					const res = await login(values);
-					if (res.data?.login.errors)
-						setErrors(toErrorMap(res.data.login.errors));
+					if (res.data?.login.errors) setErrors(toErrorMap(res.data.login.errors));
 					else if (res.data?.login.user) {
-						if (typeof router.query.next === 'string')
-							router.push(router.query.next);
+						if (typeof router.query.next === 'string') router.push(router.query.next);
 						else router.push('/');
 					}
 				}}
@@ -53,17 +51,13 @@ const Login: FC<registerProps> = ({}) => {
 								</NextLink>
 							</Box>
 						</Flex>
-						<Button
-							type='submit'
-							colorScheme='teal'
-							isLoading={isSubmitting}
-						>
+						<Button type='submit' colorScheme='teal' isLoading={isSubmitting}>
 							Login
 						</Button>
 					</Form>
 				)}
 			</Formik>
-		</Wrapper>
+		</Layout>
 	);
 };
 
